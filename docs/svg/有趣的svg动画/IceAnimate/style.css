@@ -1,0 +1,44 @@
+.inside-r,
+.inside-l,
+.drop,
+.stick,
+.outline {
+  animation: lineAnimation 2s linear forwards;
+  stroke: var(--ifm-color-primary);
+}
+
+.outline {
+  stroke-dasharray: 1020px;
+  stroke-dashoffset: 1020px;
+}
+
+.stick {
+  stroke-dasharray: 800px;
+  stroke-dashoffset: 800px;
+  animation-delay: 1.75s;
+}
+
+.drop {
+  stroke-dasharray: 200px;
+  stroke-dashoffset: 200px;
+  animation-delay: 2.5s;
+}
+
+.inside-l {
+  stroke-dasharray: 800px;
+  stroke-dashoffset: 800px;
+  animation-delay: 1s;
+}
+
+
+.inside-r {
+  stroke-dasharray: 700px;
+  stroke-dashoffset: 700px;
+}
+
+
+@keyframes lineAnimation {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
