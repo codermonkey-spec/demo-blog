@@ -72,7 +72,7 @@ const config = {
           },
           {to: '/blog', label: '作品集', position: 'right'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/codermonkey-spec/demo-blog',
             label: 'GitHub',
             position: 'right',
           },
