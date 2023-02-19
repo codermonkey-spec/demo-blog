@@ -1,53 +1,56 @@
-import React from 'react';
-import Typist from 'react-typist';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import React, { useState } from "react";
+import Typist from "react-typist";
+import Link from "@docusaurus/Link";
 
-import styles from './index.module.css';
-
-const typistProps = {
-  cursor:{
-    show: true,
-    blink: true,
-    element: '|',
-    hideWhenDone: true,
-    hideWhenDoneDelay: 0,
-  }
-}
-
-function HomepageHeader() {
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">博客</h1>
-        <p className="hero__subtitle">前端Blog</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-              <Typist {...typistProps}>
-                前端，从入门到放弃系列 😆
-              </Typist>
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
+import styles from "./index.module.scss";
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const [renderMsg, setRenderMsg] = useState(false);
+
+  const onHeaderTyped = () => {
+    setRenderMsg(true);
+  };
+
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
-    </Layout>
+    <div className={styles["TypistExample"]}>
+      <Typist
+        className={styles["TypistExample-header"]}
+        avgTypingDelay={40}
+        startDelay={2000}
+        onTypingDone={onHeaderTyped}
+      >
+        <Link to="/docs/svg/有趣的svg动画">web blog</Link>
+      </Typist>
+      <div className={styles["TypistExample-content"]}>
+        {renderMsg && (
+          <Typist
+            className={styles["TypistExample-message"]}
+            cursor={{ hideWhenDone: true }}
+          >
+            * 有趣的svg
+            <Typist.Delay ms={1250} />
+            <br />
+            * 类型约束下的js -- typescript
+            <Typist.Delay ms={1250} />
+            <br />
+            * 学不完的java
+            <Typist.Delay ms={500} />
+            script
+            <Typist.Backspace count={8} delay={1000} />
+            <Typist.Delay ms={750} />
+            vascript
+            <Typist.Delay ms={1250} />
+            <br />
+            <span>
+              *{" "}
+              <Link to="/docs/svg/有趣的svg动画" className={styles.flash}>
+                Let's go
+              </Link>
+            </span>
+            <br />
+          </Typist>
+        )}
+      </div>
+    </div>
   );
 }
