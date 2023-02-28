@@ -1,4 +1,22 @@
 
+### 前置知识
+
+`keyof运算符`
+
+`keyof`运算符获取对象所有键的类型，合并为一个字符串字面量类型
+
+``` ts
+
+type personInfoType = {
+  name: string;
+  age: number;
+};
+
+// personInfoKeys 对应的类型就为 "name" | "age"
+type personInfoKeys = keyof personInfoType
+
+```
+
 ## 一. 内置的映射类型
 
 ### 1.1 Record<Keys,Values>
