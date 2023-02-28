@@ -29,9 +29,20 @@ console.log(data);
 
 ```
 
+:::caution
+
+下面是Record的源码实现
+``` ts
+type MyRecord<K extends keyof any,T> = {
+  [P in K]:T
+}
+```
+:::
+
+
 ### 1.2 `Partial<Object>`
 
-将Object中的每个字断都标记为可选的
+将Object中的每个字段都标记为可选的
 
 ``` ts
 type personInfoType = {
@@ -46,6 +57,99 @@ const data:Partial<personInfoType> = {
 
 ```
 
+:::caution
+``` ts
+type MyPartial<T> = {
+  [k in keyof T]?:T[k]
+}
+```
+:::
+
+### 1.3 `Required<Object>`
+
+将Object中的每个字段标记为必填
+
+``` ts
+type personInfoType = {
+  name: string;
+  age: number;
+};
+
+const data:Required<personInfoType> = {
+  name:"coder",
+  age:18
+}
+
+```
+
+:::caution
+``` ts
+type MyRequired<T> = {
+  [K in keyof T]:T[K]
+}
+```
+:::
+
+### 1.4 `Readonly<Object>`
+
+将object中的每个字段标记为只读
+
+:::caution
+``` ts
+type MyReadonly<T> = {
+  readonly [K in keyof T]:T[K]
+}
+```
+:::
+
+### 1.5 Pick<Object,Keys>
+
+返回只含指定Keys的值类型
+
+``` ts
+type personInfoType = {
+  name: string;
+  age: number;
+};
+
+const data:Pick<personInfoType,"name"> = {
+  name:"coder",
+}
+
+```
+
+:::caution
+``` ts
+type MyPick<T,P extends keyof T> = {
+ [K in P]:T[K]
+}
+```
+:::
+
+### 1.6 Omit<Object,Keys>
+
+返回不包含指定Keys的值类型
+
+``` ts
+type personInfoType = {
+  name: string;
+  age: number;
+};
+
+const data:Omit<personInfoType,"name"> = {
+  age:18
+}
+
+```
+
+:::caution
+
+``` ts
+type MyOmit<T,P extends keyof T> = {
+ [K in keyof T  as K extends P ? never : K]:T[K]
+}
+```
+:::
 
 
 
