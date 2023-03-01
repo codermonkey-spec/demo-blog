@@ -66,3 +66,70 @@ type ToArray<T> = T extends any ? T[] : T[];
 // (number extends boolean ? never : number)
 type Without<T,U> = T extends U ? never : T;
 ```
+
+### 四. infer关键字
+
+条件类型的最后一个特性是可以在条件中声明泛型。这个时候就要用到infer关键字
+
+下面是声明一个条件类型`ElementType`,获取数组中元素的类型
+
+``` ts
+type ElementType<T> = T extends unknown[] ? T[number] : T
+
+type A = ElementType<number[]> // A:number
+```
+
+如果用`infer`关键字呢?
+
+``` ts
+
+type ElementType<T> = T extends (infer U)[] ? U : T;
+
+type B = ElementType<number[]>  // B:number
+
+```
+
+### 五.内置的条件类型
+
+#### 5.1 `Exclude<T,U>` : 计算在`T`中，而不在`U`中的类型
+
+``` ts
+type A = number | string
+type B = string
+
+type C = Exclude<A,B> // number
+```
+
+#### 5.2 `Extract<T,U>` : 计算`T`中可赋值给`U`的类型
+
+``` ts
+type A = number | string;
+type B = string
+
+type C = Extract<A,B> // string
+```
+
+#### 5.3 `NonNullable<T>` : 从`T`中排除`null` 和 `undefined`
+
+``` ts
+type A = {
+  a?:number | null
+}
+
+type B = NonNullable<A['a']> // number
+```
+
+#### 5.4 `ReturnType<F>` : 计算函数的返回类型
+
+``` ts
+type F = (a:number) => string;
+type R = ReturnType<F> // string;
+```
+
+#### 5.5 `InstanceType` : 计算类构造方法的实例类型
+
+``` ts
+type A = { new ():B };
+type B = {b:number};
+type I = InstanceType<A> // {b:number}
+```
