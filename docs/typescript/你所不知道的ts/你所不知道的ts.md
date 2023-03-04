@@ -207,3 +207,22 @@ type MapType<T> = {
 };
 
 ```
+### 九. `Parameters<FuncType>`
+
+获取一个函数签名的参数的类型
+
+``` ts
+type fooFuncType = (arg1:number,arg2:string) => number
+
+type funcParamsType = Parameters<fooFuncType> // [arg1:number,arg2:string]
+
+// 如果是一个函数可以使用typeof获取他的类型
+
+const foo = (num1:number,num2:number) => {
+  return num1 + num2
+}
+
+type fooType = Parameters<typeof foo> // [num1:number,num2:number]
+```
+
+
