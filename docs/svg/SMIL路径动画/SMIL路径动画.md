@@ -1,17 +1,10 @@
-
-### 一. 你是否知道路径动画? 
+### 一. 你是否知道路径动画?
 
 如果你和我一样好奇它是怎么实现的，可以继续看下去。
 
-
 ### 二.我们先从一个例子出发
 
-下面是一个飞机沿着一条路径进行飞行的demo
-
-import Fly from './fly'
-
-<Fly />
-
+下面是一个飞机沿着一条路径进行飞行的<a to="/svgPage/fly">demo</a>
 
 :::tip
 
@@ -19,13 +12,20 @@ import Fly from './fly'
 
 :::
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
-import FlyComs from '!!raw-loader!./fly';
-import FlyCss from '!!raw-loader!./fly/style.css';
+import FlyComs from '!!raw-loader!../../../src/pages/svgPage/fly';
+import FlyCss from '!!raw-loader!../../../src/pages/svgPage/fly/style.css';
 
-<CodeBlock language="tsx">{FlyComs}</CodeBlock>
-<CodeBlock language="css">{FlyCss}</CodeBlock>
-
+<Tabs>
+  <TabsItem value="apple" label="react代码" default>
+    <CodeBlock language="tsx">{FlyComs}</CodeBlock>
+  </TabsItem>
+  <TabsItem value="orange" label="css代码">
+    <CodeBlock language="css">{FlyCss}</CodeBlock>a
+  </TabsItem>
+</Tabs>
 
 ### 三 路径动画的核心
 
@@ -33,15 +33,15 @@ import FlyCss from '!!raw-loader!./fly/style.css';
 
 `animateMotion` 其实是`SMIL语言`中的其中一个标签，更多标签可以自行查阅。
 
-``` tsx
- <animateMotion
+```tsx
+<animateMotion
   href="#plane" // 指定要移动的物体
   dur="5s"
   rotate="auto" // 让物体自动转向
   repeatCount="indefinite"
 >
   {/* 要移动的路径  */}
-  <mpath href="#planePath"></mpath>  
+  <mpath href="#planePath"></mpath>
 </animateMotion>
 ```
 
@@ -51,6 +51,4 @@ import FlyCss from '!!raw-loader!./fly/style.css';
 
 下面的一个心跳案例留给读者思考，原理也是一样
 
-import Heart from './heart';
-
-<Heart />
+<a to="/svgPage/heart">心跳动画</a>
