@@ -114,8 +114,6 @@ import GrowWidth from '!!raw-loader!../../../src/pages/react-animate/grow-width'
 
   -只能返回 `Array<UseTransitionResult>`数组
 
-<a to="/react-animate/scale-box">useTrasition 数组 demo </a>
-<br />
 <a to="/react-animate/toggle-item">useTrasition demo</a>
 
 import ToggleItem from '!!raw-loader!../../../src/pages/react-animate/toggle-item';
