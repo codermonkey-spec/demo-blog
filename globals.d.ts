@@ -19,3 +19,4 @@ declare module "*.jpeg";
 declare module "*.svg";
 
 declare module "*.hdr";
+declare module "*.pdf";
